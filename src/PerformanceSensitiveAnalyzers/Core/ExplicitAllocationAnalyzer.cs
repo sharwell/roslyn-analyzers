@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.Operations;
 
 namespace Microsoft.CodeAnalysis.PerformanceSensitiveAnalyzers
 {
-    [DiagnosticAnalyzer(LanguageNames.CSharp)]
+    [DiagnosticAnalyzer(LanguageNames.CSharp, LanguageNames.VisualBasic)]
     internal sealed class ExplicitAllocationAnalyzer : AbstractAllocationAnalyzer
     {
         public const string ArrayCreationRuleId = "HAA0501";
