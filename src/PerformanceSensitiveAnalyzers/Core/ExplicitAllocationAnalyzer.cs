@@ -64,18 +64,25 @@ namespace Microsoft.CodeAnalysis.PerformanceSensitiveAnalyzers
 
         protected override ImmutableArray<OperationKind> Operations => ImmutableArray.Create(
             OperationKind.ArrayCreation,
+            OperationKind.DelegateCreation,
             OperationKind.ObjectCreation,
+            OperationKind.TypeParameterObjectCreation,
             OperationKind.AnonymousObjectCreation);
 
         protected override void AnalyzeNode(OperationAnalysisContext context)
         {
-            if (context.Operation is IArrayCreationOperation)
+            if (context.Operation is IArrayCreationOperation arrayCreationOperation)
             {
-                context.ReportDiagnostic(Diagnostic.Create(ArrayCreationRule, context.Operation.Syntax.GetLocation(), EmptyMessageArgs));
+                if (!arrayCreationOperation.IsImplicit)
+                {
+                    context.ReportDiagnostic(Diagnostic.Create(ArrayCreationRule, context.Operation.Syntax.GetLocation(), EmptyMessageArgs));
+                }
+
                 return;
             }
 
-            if (context.Operation is IObjectCreationOperation)
+            if (context.Operation is IObjectCreationOperation
+                || context.Operation is ITypeParameterObjectCreationOperation)
             {
                 if (context.Operation.Type.IsReferenceType)
                 {
@@ -92,6 +99,16 @@ namespace Microsoft.CodeAnalysis.PerformanceSensitiveAnalyzers
 
                     return;
                 }
+            }
+
+            if (context.Operation is IDelegateCreationOperation delegateCreationOperation)
+            {
+                if (!delegateCreationOperation.IsImplicit)
+                {
+                    context.ReportDiagnostic(Diagnostic.Create(ObjectCreationRule, context.Operation.Syntax.GetLocation(), EmptyMessageArgs));
+                }
+
+                return;
             }
 
             if (context.Operation is IAnonymousObjectCreationOperation)
