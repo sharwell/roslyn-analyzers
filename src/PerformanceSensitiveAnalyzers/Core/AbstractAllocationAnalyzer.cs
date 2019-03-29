@@ -5,35 +5,36 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Microsoft.CodeAnalysis.PerformanceSensitiveAnalyzers
 {
-    internal abstract class AbstractAllocationAnalyzer<TLanguageKindEnum>
-        : DiagnosticAnalyzer
-        where TLanguageKindEnum : struct
+    internal abstract class AbstractAllocationAnalyzer : DiagnosticAnalyzer
     {
-        protected abstract ImmutableArray<TLanguageKindEnum> Expressions { get; }
+        protected abstract ImmutableArray<OperationKind> Operations { get; }
 
-        protected abstract void AnalyzeNode(SyntaxNodeAnalysisContext context);
+        protected abstract void AnalyzeNode(OperationAnalysisContext context);
 
         public override void Initialize(AnalysisContext context)
         {
+            if (Operations.IsEmpty)
+            {
+                return;
+            }
+
             context.RegisterCompilationStartAction(compilationStartContext =>
             {
-                var compilation = compilationStartContext.Compilation;
-
-                compilationStartContext.RegisterCodeBlockStartAction<TLanguageKindEnum>(blockStartContext =>
+                compilationStartContext.RegisterOperationBlockStartAction(blockStartContext =>
                 {
-                    RegisterSyntaxAnalysis(blockStartContext);
+                    RegisterOperationAnalysis(blockStartContext);
                 });
             });
         }
 
-        private void RegisterSyntaxAnalysis(CodeBlockStartAnalysisContext<TLanguageKindEnum> codeBlockStartAnalysisContext)
+        private void RegisterOperationAnalysis(OperationBlockStartAnalysisContext operationBlockStartAnalysisContext)
         {
-            codeBlockStartAnalysisContext.RegisterSyntaxNodeAction(
+            operationBlockStartAnalysisContext.RegisterOperationAction(
                 syntaxNodeContext =>
                 {
                     AnalyzeNode(syntaxNodeContext);
                 },
-                Expressions);
+                Operations);
         }
     }
 }
