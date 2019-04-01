@@ -27,7 +27,7 @@ namespace Test.Utilities
                 });
             }
 
-            public LanguageVersion LanguageVersion { get; set; } = LanguageVersion.VisualBasic15_5;
+            public LanguageVersion LanguageVersion { get; set; } = LanguageVersion.Latest;
         }
     }
 }

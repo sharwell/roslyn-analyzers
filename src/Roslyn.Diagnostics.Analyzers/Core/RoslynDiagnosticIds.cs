@@ -41,5 +41,9 @@ namespace Roslyn.Diagnostics.Analyzers
         public const string RestrictedInternalsVisibleToRuleId = "RS0035";
         public const string AnnotatePublicApiRuleId = "RS0036";
         public const string ShouldAnnotateApiFilesRuleId = "RS0037";
+
+        public const string InstanceIsNotCopyableRuleId = "RS0038";
+        public const string ArgumentNotByValueRuleId = "RS0039";
+        public const string NonCopyableContainingTypeRuleId = "RS0040";
     }
 }

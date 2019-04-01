@@ -27,7 +27,7 @@ namespace Test.Utilities
                 });
             }
 
-            public LanguageVersion LanguageVersion { get; set; } = LanguageVersion.CSharp7_3;
+            public LanguageVersion LanguageVersion { get; set; } = LanguageVersion.Latest;
         }
     }
 }

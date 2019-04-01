@@ -2,6 +2,21 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
   <file datatype="xml" source-language="en" target-language="de" original="../RoslynDiagnosticsAnalyzersResources.resx">
     <body>
+      <trans-unit id="ArgumentNotByValueDescription">
+        <source>Argument cannot be passed by value</source>
+        <target state="new">Argument cannot be passed by value</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="ArgumentNotByValueMessage">
+        <source>Argument of non-copyable type '{0}' cannot be passed by value</source>
+        <target state="new">Argument of non-copyable type '{0}' cannot be passed by value</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="ArgumentNotByValueTitle">
+        <source>Argument cannot be passed by value</source>
+        <target state="new">Argument cannot be passed by value</target>
+        <note />
+      </trans-unit>
       <trans-unit id="ExportedPartsShouldHaveImportingConstructorCodeFix_ImplicitConstructor">
         <source>Explicitly define the importing constructor</source>
         <target state="translated">Importierenden Konstruktor explizit definieren</target>
@@ -75,6 +90,36 @@
       <trans-unit id="ImportingConstructorShouldBeObsoleteTitle">
         <source>Importing constructor should be [Obsolete]</source>
         <target state="translated">Importierender Konstruktor muss "[Obsolete]" lauten</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="InstanceIsNotCopyableDescription">
+        <source>Instance is not copyable</source>
+        <target state="new">Instance is not copyable</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="InstanceIsNotCopyableMessage">
+        <source>Instance is not copyable</source>
+        <target state="new">Instance is not copyable</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="InstanceIsNotCopyableTitle">
+        <source>Instance is not copyable</source>
+        <target state="new">Instance is not copyable</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="NonCopyableContainingTypeDescription">
+        <source>Copyable types cannot contain non-copyable fields</source>
+        <target state="new">Copyable types cannot contain non-copyable fields</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="NonCopyableContainingTypeMessage">
+        <source>Copyable types cannot contain non-copyable fields</source>
+        <target state="new">Copyable types cannot contain non-copyable fields</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="NonCopyableContainingTypeTitle">
+        <source>Copyable types cannot contain non-copyable fields</source>
+        <target state="new">Copyable types cannot contain non-copyable fields</target>
         <note />
       </trans-unit>
       <trans-unit id="TestExportsShouldNotBeDiscoverableCodeFix">
